@@ -1,12 +1,11 @@
 'use client' ;
 
-import React from "react"
 
 interface ContainerProps {
     children: React.ReactNode;
 }
-const Container: React.FC<ContainerProps> = ({
-    children}) => {
+const Container: React.FC<ContainerProps> = ({ 
+    children }) => {
     return (
         <div
             className="
@@ -23,4 +22,4 @@ const Container: React.FC<ContainerProps> = ({
     )
 }
 
-export default Container
+export default Container;

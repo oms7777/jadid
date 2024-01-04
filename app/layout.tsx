@@ -34,10 +34,10 @@ export default async function RootLayout({
       <body className={font.className}>
         <ClientOnly>
           <ToasterProvider />
-          <SearchModal />
-          <RentModal />
           <LoginModal />
           <RegisterModal />
+          <SearchModal />
+          <RentModal />
           <Navbar currentUser={currentUser} />
         </ClientOnly>
         <div className='pb-20 pt-28'>

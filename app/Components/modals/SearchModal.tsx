@@ -11,7 +11,6 @@ import CountrySelect, { CountrySelectValue } from "../inputs/CountrySelect"
 import { formatISO } from "date-fns"
 import Heading from "../Heading"
 import useSearchModal from "@/app/hooks/useSearchModal"
-import { Headland_One } from "next/font/google"
 import Calendar from "../inputs/Calendar"
 
 enum STEPS {
