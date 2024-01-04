@@ -11,7 +11,7 @@ import { GiPaintRoller } from "react-icons/gi";
 import { MdConstruction } from "react-icons/md";
 import { TbGardenCart } from "react-icons/tb";
 import CategoryBox from "../CategoryBox";
-import { usePathname, useSearchParams } from "next/dist/client/components/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 
 
 export const categories = [
