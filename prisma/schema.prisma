@@ -51,7 +51,6 @@ model Listing {
   title String
   description String
   imageSrc String
-  videoSrc String 
   createdAt DateTime @default(now())
   category String
   locationValue String

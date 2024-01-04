@@ -22,9 +22,8 @@ enum STEPS {
     LOCATION = 1,
     INFO = 2,
     IMAGES = 3,
-    VIDEOS = 4,
-    DESCRIPTION = 5,
-    PRICE = 6,
+    DESCRIPTION = 4,
+    PRICE = 5,
 
 }
 
@@ -50,7 +49,6 @@ const RentModal = () => {
             category: '',
             location: null,
             imageSrc: '',
-            videoSrc: '',
             price: 1,
             title: '',
             description:''
