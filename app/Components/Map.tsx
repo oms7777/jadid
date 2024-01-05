@@ -18,16 +18,15 @@ L.Icon.Default.mergeOptions({
 })
 
 interface MapProps {
-    center?: number[]
+    center?: L.LatLngExpression
 }
 
-const Map: React.FC<MapProps> = ({
-    center
-}) => {
+const Map: React.FC<MapProps> = ({center}) => {
+    const franceCoordinates: L.LatLngExpression = [46.6031, 1.7];
     return (
         <MapContainer
-            center={center as L.LatLngExpression || [51, -0.09]}
-            zoom={center ? 4 : 2}
+            center={center ? center : franceCoordinates}
+            zoom={center ? 4 : 6}
             scrollWheelZoom={false}
             className="h-[35vh] rounded-lg"
         >   

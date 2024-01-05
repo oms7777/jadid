@@ -121,7 +121,7 @@ const RentModal = () => {
     let bodyContent = (
         <div className="flex flex-col gap-8">
             <Heading
-                title="Que recherchez vous ?"
+                title="Quel métier réalisez-vous ?"
                 subtitle="Choisissez une catégorie"
             />
             <div
