@@ -16,7 +16,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 
 export const categories = [
     {
-        label: "nique ta race",
+        label: "Portes et fenêtres",
         icon: GiKeyLock,
         description: "This service to unlock doors"
     },
