@@ -99,10 +99,15 @@ const ProviderProfile = () => {
   }
 
   const handleReservation = () => {
-    // Construisez l'URL de paiement en ajoutant toutes les infos requises
+    if (!filteredService) {
+      console.error("❌ Aucun service sélectionné.");
+      return;
+    }
+  
     const paymentUrl = `/payment?providerId=${provider.id}&serviceId=${filteredService.id}&date=${encodeURIComponent(searchDate)}&time=${encodeURIComponent(searchTime)}&price=${filteredService.price}`;
     router.push(paymentUrl);
   };
+  
   
 
   return (

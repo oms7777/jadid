@@ -88,7 +88,13 @@ const timeSlots = ["08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00"
   "16:00", "16:30", "17:00", "17:30"
 ];
 
-const SearchModal = () => {
+interface SearchModalProps {
+  category?: string | null;
+  onClose: () => void;
+}
+
+const SearchModal: React.FC<SearchModalProps> = ({ onClose }) => {
+
   const router = useRouter();
   const searchModal = useSearchModal();
 

@@ -21,6 +21,11 @@ export async function getListingById(params: IParams): Promise<SafeListing | nul
     };
   } catch (error) {
     console.error("❌ Error in getListingById:", error);
-    throw new Error(error.message || "Internal Server Error");
+  
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    } else {
+      throw new Error("Internal Server Error");
+    }
   }
-}
+}  

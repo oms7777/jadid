@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import SearchModal from "../modals/SearchModal";
-// Import Search Modal
+import useSearchModal from "@/app/hooks/useSearchModal"; // ✅ Import modal hook
 
 const providers = [
   { id: 1, name: "Ahmed", category: "Plombier", rating: 4.8, image: "/Images/provider1.jpg" },
@@ -16,12 +15,11 @@ const providers = [
 ];
 
 const TopProviders = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const searchModal = useSearchModal(); // ✅ Use global modal hook
 
   const handleProviderClick = (category: string) => {
-    setSelectedCategory(category);
-    setIsModalOpen(true);
+    searchModal.setCategory(category); // ✅ Set the selected category
+    searchModal.onOpen(); // ✅ Open the modal
   };
 
   return (
@@ -45,11 +43,6 @@ const TopProviders = () => {
           </div>
         ))}
       </div>
-
-      {/* Show Search Modal */}
-      {isModalOpen && (
-        <SearchModal category={selectedCategory} onClose={() => setIsModalOpen(false)} />
-      )}
     </div>
   );
 };

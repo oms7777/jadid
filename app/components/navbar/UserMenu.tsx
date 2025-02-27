@@ -8,8 +8,14 @@ import Avatar from "../Avatar";
 import MenuItem from "./MenuItem";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
+import { SafeUser } from "@/app/types";
 
-const UserMenu = () => {
+interface UserMenuProps {
+  currentUser?: SafeUser | null;
+}
+
+const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
+
   const { data: session } = useSession();
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
@@ -45,10 +51,9 @@ const UserMenu = () => {
       <div className="relative">
         <div
           onClick={toggleOpen}
-          className="p-4 md:py-1 md:px-2 border border-neutral-200 text-yellow-600 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition"
-        >
-          <AiOutlineMenu />
-          <Avatar src={session?.user?.image} />
+          className="p-3 border border-neutral-200 text-white bg-yellow-600 flex items-center justify-center rounded-full cursor-pointer hover:bg-yellow-500 transition"        >
+          <AiOutlineMenu size={24}/>
+
         </div>
 
         {isOpen && (

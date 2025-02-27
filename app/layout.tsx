@@ -1,11 +1,7 @@
 import { Nunito } from "next/font/google";
 import SessionProvider from "./providers/SessionProvider";
 import ClientOnly from "./components/ClientOnly";
-import ToasterProvider from "./providers/ToasterProvider";
-import LoginModal from "./components/modals/LoginModal";
-import RegisterModal from "./components/modals/RegisterModal";
-import SearchModal from "./components/modals/SearchModal";
-import RentModal from "./components/modals/RentModal"; // Import the new component
+import ModalProvider from "./providers/ModalProvider"; // ✅ Import new client-side provider
 import "./globals.css";
 import getCurrentUser from "./actions/getCurrentUser";
 import NavbarWithCondition from "./components/navbar/NavbarWithCondition";
@@ -25,20 +21,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <body className={font.className}>
         <SessionProvider>
           <ClientOnly>
-            <ToasterProvider />
-            <LoginModal />
-            <RegisterModal />
-            <SearchModal />
-            <RentModal />
-
-            {/* Use the NavbarWithCondition component */}
+            <ModalProvider /> {/* ✅ Moved modals into a client component */}
             <NavbarWithCondition currentUser={currentUser} />
-
           </ClientOnly>
           <main className="w-full pt-80">
             {children}
           </main>
-
         </SessionProvider>
       </body>
     </html>
