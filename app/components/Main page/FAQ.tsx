@@ -5,8 +5,8 @@ import { useState } from "react";
 const FAQ = () => {
   const faqs = [
     {
-      question: "Comment fonctionne Jadid ?",
-      answer: "Jadid vous permet de réserver des services en quelques clics. Il vous suffit de choisir une catégorie, une date et un prestataire disponible.",
+      question: "Comment fonctionne Maalem ?",
+      answer: "Maalem vous permet de réserver des services en quelques clics. Il vous suffit de choisir une catégorie, une date et un prestataire disponible.",
     },
     {
       question: "Quels types de services puis-je réserver ?",
