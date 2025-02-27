@@ -22,3 +22,5 @@ export default async function getCurrentUser() {
     isProvider: currentUser.isProvider, // ✅ Ensure isProvider is returned
   };
 }
+
+export { getCurrentUser };
