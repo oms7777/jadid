@@ -36,7 +36,7 @@ const Testimonials = () => {
 
           {/* Testimonial 3 */}
           <div className="bg-white p-6 rounded-lg shadow-lg">
-            <p className="text-lg text-gray-700 italic">"Jean-Michel est ponctuel, très professionnel, efficace et de très bon conseil. Il a parfaitement réparé ma porte d’entrée capricieuse depuis plusieurs mois. Je le recommande vivement."</p>
+            <p className="text-lg text-gray-700 italic">"Jean-Michel est ponctuel, très professionnel, efficace et de très bon conseil. Il a parfaitement réparé ma porte capricieuse depuis plusieurs mois. Je le recommande vivement."</p>
             <p className="font-semibold text-gray-800 mt-4">Julien E.</p> {/* Latinized Name */}
             <p className="text-gray-500">Réparations domestiques</p>
             <div className="flex justify-center mt-3">{renderStars(5)}</div> {/* 5-star rating */}
@@ -44,7 +44,7 @@ const Testimonials = () => {
 
           {/* Testimonial 4 */}
           <div className="bg-white p-6 rounded-lg shadow-lg">
-            <p className="text-lg text-gray-700 italic">"Des travaux d'électricité un peu casse-pieds (prises à changer ou à ré-encastrer avec des filages qui ne fonctionnaient pas), Pablo s'est sorti de ces tâches en un temps record avec le sourire."</p>
+            <p className="text-lg text-gray-700 italic">"Des travaux délectricité un peu casse-pieds (prises à changer ou à ré-encastrer avec des filages qui ne fonctionnaient pas), Pablo est sorti de ces tâches en un temps record avec le sourire."</p>
             <p className="font-semibold text-gray-800 mt-4">Gerard F.</p> {/* Latinized Name */}
             <p className="text-gray-500">Électricité</p>
             <div className="flex justify-center mt-3">{renderStars(3)}</div> {/* 3-star rating */}
@@ -52,7 +52,7 @@ const Testimonials = () => {
 
           {/* Testimonial 5 */}
           <div className="bg-white p-6 rounded-lg shadow-lg">
-            <p className="text-lg text-gray-700 italic">"Aboubacar est très pro et à l'habitude de travailler sur du bricolage et de la menuiserie, on le ressent tout de suite. Très sympathique et le résultat est parfait."</p>
+            <p className="text-lg text-gray-700 italic">"Aboubacar est très pro et à lhabitude de travailler sur du bricolage et de la menuiserie, on le ressent tout de suite. Très sympathique et le résultat est parfait."</p>
             <p className="font-semibold text-gray-800 mt-4">Stan B.</p> {/* Latinized Name */}
             <p className="text-gray-500">Menuiserie et charpenterie</p>
             <div className="flex justify-center mt-3">{renderStars(5)}</div> {/* 5-star rating */}
@@ -60,7 +60,7 @@ const Testimonials = () => {
 
           {/* Testimonial 6 */}
           <div className="bg-white p-6 rounded-lg shadow-lg">
-            <p className="text-lg text-gray-700 italic">"Kader a été disponible très rapidement et a résolu notre problème de fuite en nous expliquant les bons réflexes à avoir pour l’entretien de nos canalisations. Très sympa et super travail."</p>
+            <p className="text-lg text-gray-700 italic">"Kader a été disponible très rapidement et a résolu notre problème de fuite en nous expliquant les bons réflexes à avoir pour entretien de nos canalisations. Très sympa et super travail."</p>
             <p className="font-semibold text-gray-800 mt-4">Marie J.</p> {/* Latinized Name */}
             <p className="text-gray-500">Plomberie</p>
             <div className="flex justify-center mt-3">{renderStars(4)}</div> {/* 4-star rating */}

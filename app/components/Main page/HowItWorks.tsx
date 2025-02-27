@@ -27,7 +27,7 @@ const HowItWorks = () => {
               <AiOutlineCheckCircle />
             </div>
             <p className="text-lg font-semibold text-gray-700">
-              Réservez un Maalem dès aujourd'hui.
+              Réservez un Maalem dès aujourdhui.
             </p>
           </div>
 

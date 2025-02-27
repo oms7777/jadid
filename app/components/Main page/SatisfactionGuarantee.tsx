@@ -12,7 +12,7 @@ const SatisfactionGuarantee = () => {
           <div className="bg-white p-6 rounded-lg shadow-lg w-full md:w-[300px]">
             <h3 className="text-xl font-semibold text-yellow-600 mb-4">La Promesse de Satisfaction</h3>
             <p className="text-gray-700">
-              Si vous n'êtes pas satisfait, nous ferons tout notre possible pour y remédier.
+              Si vous n êtes pas satisfait, nous ferons tout notre possible pour y remédier.
             </p>
           </div>
         </div>
@@ -22,7 +22,7 @@ const SatisfactionGuarantee = () => {
           <div className="bg-white p-6 rounded-lg shadow-lg w-full md:w-[300px]">
             <h3 className="text-xl font-semibold text-yellow-600 mb-4">Des prestataires vérifiés</h3>
             <p className="text-gray-700">
-              Tous les prestataires font l'objet d'une vérification de leur identité avant de rejoindre la plateforme.
+              Tous les prestataires font objet d une vérification de leur identité avant de rejoindre la plateforme.
             </p>
           </div>
 

@@ -14,6 +14,7 @@ import toast from "react-hot-toast";
 import ListingHead from "@/app/components/listings/ListingHead";
 import ListingInfo from "@/app/components/listings/ListingInfo";
 import ListingReservation from "@/app/components/listings/ListingReservation";
+import Container from "@/app/components/Container";
 
 
 const initialDateRange = {

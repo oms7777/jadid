@@ -8,7 +8,7 @@ const Footer = () => {
         <p className="text-sm mt-2">© {new Date().getFullYear()} Jadid. Tous droits réservés.</p>
         <div className="flex justify-center space-x-4 mt-4">
           <a href="/terms" className="hover:underline">
-            Conditions d'utilisation
+            Conditions utilisation
           </a>
           <a href="/privacy" className="hover:underline">
             Politique de confidentialité

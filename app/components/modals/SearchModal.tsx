@@ -43,7 +43,7 @@ const categories = [
 const subcategories: Record<string, { label: string; icon: JSX.Element }[]> = {
   "Ménage": [
     { label: "Ménage à domicile", icon: <FaBroom /> },
-    { label: "Ménage d'état des lieux", icon: <FaBroom /> },
+    { label: "Ménage état des lieux", icon: <FaBroom /> },
     { label: "Ménage après un événement", icon: <FaBroom /> },
     { label: "Repassage", icon: <FaBroom /> },
     { label: "Nettoyage de vitres", icon: <FaBroom /> },
@@ -58,8 +58,8 @@ const subcategories: Record<string, { label: string; icon: JSX.Element }[]> = {
     { label: "Dépannage serrurerie", icon: <FaKey /> },
   ],
   "Plombier": [
-    { label: "Réparation de fuites d'eau", icon: <FaWrench /> },
-    { label: "Changer une chasse d'eau", icon: <FaWrench /> },
+    { label: "Réparation de fuites d eau", icon: <FaWrench /> },
+    { label: "Changer une chasse d eau", icon: <FaWrench /> },
     { label: "Débouchage des canalisations", icon: <FaWrench /> },
   ],
   "Electricien": [
@@ -258,7 +258,7 @@ const SearchModal = () => {
       case STEPS.TIME:
         bodyContent = (
           <div className="flex flex-col space-y-4">
-            <h3 className="text-lg font-semibold text-center">🕒 Choisissez le temps d'intervention</h3>
+            <h3 className="text-lg font-semibold text-center">🕒 Choisissez le temps d intervention</h3>
             <div className="grid grid-cols-2 gap-3">
               {timeSlots.map((time) => (
                 <button 
