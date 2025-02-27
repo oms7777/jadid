@@ -1,7 +1,7 @@
 import React from "react";
-import Container from "../Components/Container";
-import Heading from "../Components/Heading";
-import ListingCard from "../Components/listings/ListingCard";
+import Container from "../../components/Container";
+import Heading from "../../components/Heading";
+import ListingCard from "../../components/listings/ListingCard";
 import { SafeListing, SafeUser } from "../types";
 
 interface FavoritesClientProps {

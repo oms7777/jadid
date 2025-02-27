@@ -1,6 +1,4 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
+// This is your Prisma schema file
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,69 +9,92 @@ datasource db {
 }
 
 model User {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  name String ?
-  email String? @unique
-  emailVerified DateTime?
-  image String?
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  name           String?
+  email          String    @unique
+  emailVerified  DateTime?
   hashedPassword String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  favoriteIds String[] @db.ObjectId
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  favoriteIds    String[]  @db.ObjectId
+  isProvider     Boolean   @default(false)
+  services       Listing[]
+  accounts       Account[] 
+  availability   Json?
 
-  accounts Account[]
-  listings Listing[]
-  reservations Reservation[]
+  description    String?  
+  location       String?  
+  profileImage   String?
 
+  // ✅ Add feedback relation
+  feedback       Feedback[]
+
+  // ✅ Explicit reservation relations
+  clientReservations   Reservation[] @relation(name: "ClientReservations")
+  providerReservations Reservation[] @relation(name: "ProviderReservations")
 }
 
-model Account { 
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  userId String @db.ObjectId
-  type String
-  provider String
-  providerAccountId String
-  refresh_token String? @db.String
-  access_token String? @db.String
-  expires_at Int?
-  token_type String?
-  scope String?
-  id_token String? @db.String
-  session_state String?
+
+model Feedback {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  clientName  String
+  rating      Int      // ✅ Store rating (e.g., 1-5 stars)
+  comment     String?  // ✅ Optional review text
+  providerId  String   @db.ObjectId  // ✅ Foreign key to Provider
+
+  provider User @relation(fields: [providerId], references: [id], onDelete: Cascade)
+}
+
+
+model Account {
+  id                 String @id @default(auto()) @map("_id") @db.ObjectId
+  userId             String @db.ObjectId
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String? 
+  access_token       String? 
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String? 
+  session_state      String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@unique([provider, providerAccountId])
+  @@unique([provider, providerAccountId]) // ✅ Ensure correct unique constraint
 }
 
 model Listing {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  title String
-  description String
-  imageSrc String
-  createdAt DateTime @default(now())
-  category String
-  locationValue String
-  userId String @db.ObjectId
-  price Int
+  id            String @id @default(auto()) @map("_id") @db.ObjectId
+  title         String?  // ✅ Make Optional
+  description   String?  
+  createdAt     DateTime @default(now())
+  category      String
+  subcategory   String  
+  locationValue String?  // ✅ Make Optional
+  userId        String @db.ObjectId
+  price         Int
+
+  availableDates String[]  
+  availableTimes String[]  
 
   user User @relation(fields:[userId], references: [id], onDelete: Cascade)
   reservations Reservation[]
-
 }
 
 model Reservation {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  userId String @db.ObjectId
-  listingId String @db.ObjectId
-  startDate DateTime
-  endDate DateTime
-  totalPrice Int
-  createdAt DateTime @default(now())
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId          String   @db.ObjectId  // ✅ Client making the reservation
+  providerId      String   @db.ObjectId  // ✅ Service provider
+  listingId       String   @db.ObjectId
+  reservationDate DateTime
+  totalPrice      Int
+  status          String   @default("pending") // ✅ "pending", "in_progress", "completed"
+  createdAt       DateTime @default(now())
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  listing Listing @relation(fields: [listingId],references: [id], onDelete: Cascade)
-  
+  // ✅ Define relations with explicit names
+  client   User    @relation(name: "ClientReservations", fields: [userId], references: [id], onDelete: Cascade)
+  provider User    @relation(name: "ProviderReservations", fields: [providerId], references: [id], onDelete: Cascade)
+  listing  Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
 }
-
-

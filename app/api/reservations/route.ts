@@ -1,46 +1,29 @@
 import { NextResponse } from "next/server";
-
 import prisma from "@/app/libs/prismadb";
-import getCurrentUser from "@/app/actions/getCurrentUser";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
-
-export async function POST(
-    request: Request
-) {
-    const currentUser = await getCurrentUser();
-
-    if (!currentUser) {
-        return NextResponse.error();
-    }
-
-    const body = await request.json();
-
-    const {
-        listingId,
-        startDate,
-        endDate,
-        totalPrice
-    } = body;
-
-    if (!listingId || !startDate || !endDate || !totalPrice) {
-        return NextResponse.error();
-    }
-
-    const listingAndReservation = await prisma?.listing.update({
-        where: {
-            id: listingId
-        },
-        data: {
-            reservations: {
-                create: {
-                    userId: currentUser.id,
-                    startDate,
-                    endDate,
-                    totalPrice
-                }
-            }
+export async function GET(req: Request) {
+    try {
+        const session = await getServerSession(authOptions);
+        if (!session?.user) {
+            return NextResponse.json({ error: "Non autorisé" }, { status: 401 });
         }
-    });
 
-    return NextResponse.json(listingAndReservation)
+        // ✅ Use `client` instead of `clientId`
+        const reservations = await prisma.reservation.findMany({
+            where: {
+                client: { id: session.user.id } // ✅ Correct way to filter by client ID
+            },
+            include: {
+                provider: { select: { name: true } }, // ✅ Get provider name
+                listing: { select: { title: true, category: true } }, // ✅ Get service title and category
+            },
+        });
+
+        return NextResponse.json(reservations, { status: 200 });
+    } catch (error) {
+        console.error("❌ Erreur API RÉSERVATIONS:", error);
+        return NextResponse.json({ error: "Erreur interne du serveur" }, { status: 500 });
+    }
 }

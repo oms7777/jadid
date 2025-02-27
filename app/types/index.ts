@@ -2,26 +2,25 @@ import { Listing, Reservation, User } from "@prisma/client";
 
 export type SafeListing = Omit<
     Listing,
-    "createdAt"
+    "createdAt" | "userId"
 > & {
     createdAt: string;
-}
+    provider?: { id: string; name: string } | null;
+};
 
 export type SafeReservation = Omit<
     Reservation,
-    "createdAt" | "startDate" | "endDate" | "listing"
+    "createdAt" | "reservationDate" | "listing"
 > & {
-    createdAt: string;
-    startDate: string;
-    endDate: string;
-    listing: SafeListing
-}
+    createdAt: string; // ✅ Ensure date is a string
+    reservationDate: string; // ✅ Fix type to match `getReservations.ts`
+    listing: SafeListing;
+};
 
-export type SafeUser = Omit<
-    User,
-    "createdAt" | "updatedAt" | "emailVerified"
-> & {
-    createdAt: string
-    updatedAt: string
-    emailVerified: String | null
-}
+export type SafeUser = {
+    id: string;
+    name?: string | null;
+    email?: string | null;
+    image?: string | null;
+    isProvider: boolean; // ✅ Ensures provider status is always defined
+};

@@ -1,55 +1,38 @@
 import prisma from "@/app/libs/prismadb";
+import { SafeReservation } from "@/app/types";
 
 interface IParams {
-    listingId?: string;
-    userId?: string;
-    authorId?: string;
+  listingId?: string;
+  userId?: string;
+  authorId?: string;
 }
 
-export default async function getReservations(
-    params: IParams
-) {
-try {
-        const { listingId, userId, authorId } = params;
+export async function getReservations(params: IParams): Promise<SafeReservation[]> {
+  try {
+    const reservations = await prisma.reservation.findMany({
+      where: {
+        OR: [
+          { listingId: params.listingId },
+          { userId: params.userId },
+          { listing: { userId: params.authorId } }
+        ]
+      },
+      include: { listing: true },
+    });
 
-        const query: any = {};
-
-        if (listingId) {
-            query.listingId = listingId;
-        }
-
-        if (userId) {
-            query.userId = userId;
-        }
-
-        if (authorId) {
-            query.listing = { userId: authorId }
-        }
-
-        const reservations = await prisma.reservation.findMany({
-            where: query,
-            include: {
-                listing: true,
-            },
-            orderBy: {
-                createdAt: 'desc'
-            }
-        });
-
-        const SafeReservations = reservations.map (
-            (reservation) => ({
-            ...reservation,
-            createdAt: reservation.createdAt.toISOString(),
-            startDate: reservation.startDate.toISOString(),
-            endDate: reservation.endDate.toISOString(),
-            listing: {
-                ...reservation.listing,
-                createdAt: reservation.listing.createdAt.toISOString()
-            },
-            }));
-
-        return SafeReservations;
-    } catch (error:any) {
-        throw new Error(error);
-    }
+    return reservations.map((reservation) => ({
+      ...reservation,
+      createdAt: reservation.createdAt.toISOString(),
+      reservationDate: reservation.reservationDate.toISOString(),
+      listing: {
+        ...reservation.listing,
+        createdAt: reservation.listing.createdAt.toISOString(),
+      },
+    }));
+  } catch (error: any) {
+    console.error("❌ Error in getReservations:", error);
+    throw new Error(error.message || "Internal Server Error");
+  }
 }
+
+// ✅ Ensure only ONE export (no duplicates)
